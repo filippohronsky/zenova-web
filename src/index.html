@@ -1,100 +1,163 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ZENOVA Labs, s.r.o.</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    /* Reset */
-    *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
-    body { font-family: Arial, sans-serif; line-height:1.6; color:#333; }
-    .container { max-width:1000px; margin:0 auto; padding:1rem; }
-    header{background:#333;color:#fff;padding:1rem 0;}
-    header .container{display:flex;justify-content:space-between;align-items:center;}
-    header h1{font-size:1.5rem;}
-    #lang-toggle{background:#fff;color:#333;border:none;padding:0.5rem;cursor:pointer;border-radius:4px;}
-    nav{background:#444;}
-    nav ul{display:flex;list-style:none;justify-content:center;padding:0.5rem 0;}
-    nav li{margin:0 0.75rem;}
-    nav a{color:#fff;text-decoration:none;font-weight:bold;}
-    main{padding:2rem 0;}
-    section{margin-bottom:2rem;}
-    section h2{margin-bottom:1rem;font-size:1.25rem;color:#222;}
-    ul{list-style:disc inside;}
-    footer{background:#333;color:#fff;text-align:center;padding:1rem 0;}
+    :root {
+      --primary: #0078d4; /* Microsoft / Azure blue */
+      --secondary: #00a0e3; /* accent */
+      --dark: #1b1b1f;
+      --light: #ffffff;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Inter',Arial,sans-serif;line-height:1.6;color:var(--dark);background:#f7f9fc;}
+    a{text-decoration:none;color:inherit;}
+    img{max-width:100%;height:auto;}
+    .container{max-width:1100px;margin:0 auto;padding:0 1.25rem;}
+
+    /* Header */
+    header{background:var(--primary);color:var(--light);}
+    header .container{display:flex;justify-content:space-between;align-items:center;padding:0.75rem 0;}
+    header h1{font-weight:800;font-size:1.6rem;letter-spacing:0.5px;display:flex;align-items:center;gap:0.5rem;}
+    header h1 img{height:36px;width:auto;}
+    #lang-toggle{background:var(--light);color:var(--primary);border:none;padding:0.45rem 0.9rem;font-weight:600;border-radius:6px;cursor:pointer;transition:background .2s;}
+    #lang-toggle:hover{background:#e4e9f0;}
+
+    /* Nav */
+    nav{background:#004c9f;}
+    nav ul{display:flex;list-style:none;justify-content:center;padding:0.5rem 0;gap:1.25rem;flex-wrap:wrap;}
+    nav a{color:var(--light);font-weight:600;transition:color .2s;}
+    nav a:hover{color:#c7e0ff;}
+
+    /* Hero */
+    #hero{background:linear-gradient(135deg,var(--primary) 0%,var(--secondary) 100%);color:#fff;text-align:center;padding:4rem 1rem;}
+    #hero img.logo{width:260px;margin:0 auto 1.5rem;filter:drop-shadow(0 6px 10px rgba(0,0,0,.4));}
+    #hero p{font-size:1.125rem;max-width:720px;margin:0 auto;opacity:.9;}
+
+    /* Sections */
+    section{padding:3rem 0;}
+    section h2{font-size:1.75rem;font-weight:700;color:var(--primary);margin-bottom:1rem;text-align:center;}
+    .grid{display:grid;gap:1rem;}
+    .services-list{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));}
+    .services-list li{background:#fff;border-radius:8px;padding:1rem;border:1px solid #e0e7ef;box-shadow:0 2px 4px rgba(0,0,0,.04);}
+
+    /* Partners & Clients */
+    .logo-row{display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;align-items:center;margin-top:1rem;}
+    .logo-row img{height:60px;width:auto;filter:grayscale(0%);}
+
+    /* Contact */
+    #contact p{margin:0.25rem 0;text-align:center;}
+    #contact strong{font-weight:600;}
+
+    /* Footer */
+    footer{background:var(--dark);color:#d1d7de;text-align:center;padding:1rem 0;}
+
+    /* Multilang */
     .lang-en{display:none;}
-    @media(max-width:600px){nav ul{flex-direction:column;}nav li{margin:0.5rem 0;}}
+
+    @media(max-width:600px){header h1{font-size:1.35rem;}#hero img.logo{width:200px;}section{padding:2rem 0;}}
   </style>
 </head>
 <body>
   <header>
     <div class="container">
       <h1>
+        <img src="assets/zenova-logo.svg" alt="ZENOVA Labs logo" />
         <span class="lang-sk">ZENOVA Labs, s.r.o.</span>
         <span class="lang-en">ZENOVA Labs, Ltd.</span>
       </h1>
       <button id="lang-toggle">EN</button>
     </div>
   </header>
+
   <nav>
-    <ul class="container">
+    <ul>
       <li><a href="#services"><span class="lang-sk">Služby</span><span class="lang-en">Services</span></a></li>
       <li><a href="#partners"><span class="lang-sk">Partneri</span><span class="lang-en">Partners</span></a></li>
       <li><a href="#clients"><span class="lang-sk">Zákazníci</span><span class="lang-en">Clients</span></a></li>
       <li><a href="#contact"><span class="lang-sk">Kontakt</span><span class="lang-en">Contact</span></a></li>
     </ul>
   </nav>
+
+  <section id="hero">
+    <div class="container">
+      <img src="assets/zenova-logo.svg" class="logo" alt="ZENOVA Labs logo large" />
+      <p>
+        <span class="lang-sk">Inovatívne riešenia v oblasti cloudových služieb, sietí a automatizácie pre rast vášho podnikania.</span>
+        <span class="lang-en">Innovative cloud, networking and automation solutions to accelerate your business growth.</span>
+      </p>
+    </div>
+  </section>
+
   <main class="container">
     <section id="services">
       <h2><span class="lang-sk">Naše služby</span><span class="lang-en">Our Services</span></h2>
-      <ul>
-        <li><span class="lang-sk">Migrácia z on-prem prostredia do Microsoft 365</span><span class="lang-en">Migration from on-premises to Microsoft 365</span></li>
+      <ul class="grid services-list">
+        <li><span class="lang-sk">Migrácia z on‑prem prostredia do Microsoft&nbsp;365</span><span class="lang-en">Migration from on‑premises to Microsoft&nbsp;365</span></li>
         <li><span class="lang-sk">Vytváranie jednoduchých aplikácií</span><span class="lang-en">Building lightweight applications</span></li>
         <li><span class="lang-sk">Automatizácia procesov</span><span class="lang-en">Process automation</span></li>
-        <li><span class="lang-sk">Budovanie dátových centier pomocou BGP EVPN VXLAN</span><span class="lang-en">Data center setup with BGP EVPN VXLAN</span></li>
-        <li><span class="lang-sk">Vytváranie podnikovej infraštruktúry (wireless, wired)</span><span class="lang-en">Enterprise wireless & wired infrastructure</span></li>
-        <li><span class="lang-sk">Využívanie Microsoft Azure pre vysoko dostupné prostredia</span><span class="lang-en">High-availability deployments on Microsoft Azure</span></li>
-        <li><span class="lang-sk">Vytváranie sietí s technológiou SD-WAN (Meraki, Catalyst), SD-Access</span><span class="lang-en">SD-WAN (Meraki, Catalyst) & SD-Access networking</span></li>
-        <li><span class="lang-sk">Nasadzovanie IEEE 802.1X, ZTA, SASE</span><span class="lang-en">IEEE 802.1X, ZTA & SASE implementations</span></li>
-        <li><span class="lang-sk">Riešenia založené na Cisco Meraki ekosystéme</span><span class="lang-en">Solutions built on Cisco Meraki ecosystem</span></li>
+        <li><span class="lang-sk">Budovanie dátových centier pomocou BGP&nbsp;EVPN&nbsp;VXLAN</span><span class="lang-en">Data‑center design with BGP EVPN VXLAN</span></li>
+        <li><span class="lang-sk">Podniková infraštruktúra (wireless, wired)</span><span class="lang-en">Enterprise wireless & wired infrastructure</span></li>
+        <li><span class="lang-sk">Vysoká dostupnosť v Microsoft Azure</span><span class="lang-en">High‑availability deployments on Microsoft Azure</span></li>
+        <li><span class="lang-sk">SD‑WAN (Meraki, Catalyst) & SD‑Access</span><span class="lang-en">SD‑WAN (Meraki, Catalyst) & SD‑Access</span></li>
+        <li><span class="lang-sk">IEEE 802.1X, ZTA, SASE implementácie</span><span class="lang-en">IEEE 802.1X, ZTA & SASE implementations</span></li>
+        <li><span class="lang-sk">Riešenia na Cisco Meraki ekosystéme</span><span class="lang-en">Solutions on Cisco Meraki ecosystem</span></li>
       </ul>
     </section>
+
     <section id="partners">
       <h2><span class="lang-sk">Partneri</span><span class="lang-en">Partners</span></h2>
-      <ul>
-        <li><span class="lang-sk">Microsoft Partner</span><span class="lang-en">Microsoft Partner</span></li>
-      </ul>
+      <div class="logo-row">
+        <img src="assets/microsoft-partner.png" alt="Microsoft Partner" title="Microsoft Partner" />
+      </div>
     </section>
+
     <section id="clients">
       <h2><span class="lang-sk">Zákazníci</span><span class="lang-en">Clients</span></h2>
-      <ul>
-        <li><span class="lang-sk">WOODCOTE Group a.s.</span><span class="lang-en">WOODCOTE Group a.s.</span></li>
-      </ul>
+      <div class="logo-row">
+        <img src="assets/woodcote-logo.png" alt="WOODCOTE Group a.s." title="WOODCOTE Group a.s." />
+      </div>
     </section>
+
     <section id="contact">
       <h2><span class="lang-sk">Kontakt</span><span class="lang-en">Contact</span></h2>
       <p><strong><span class="lang-sk">Email:</span><span class="lang-en">Email:</span></strong> <a href="mailto:info@zenovalabs.sk">info@zenovalabs.sk</a></p>
-      <p><strong><span class="lang-sk">Telefón:</span><span class="lang-en">Phone:</span></strong> +421 123 456 789</p>
+      <p><strong><span class="lang-sk">Telefón:</span><span class="lang-en">Phone:</span></strong> +421&nbsp;123&nbsp;456&nbsp;789</p>
       <p><strong><span class="lang-sk">Adresa:</span><span class="lang-en">Address:</span></strong> ZENOVA Labs, s.r.o., Bratislava, Slovakia</p>
     </section>
   </main>
+
   <footer>
-    <div class="container">
-      <p>&copy; <span id="year"></span> ZENOVA Labs, s.r.o. All rights reserved.</p>
-    </div>
+    <p>&copy; <span id="year"></span> ZENOVA Labs, s.r.o. All rights reserved.</p>
   </footer>
+
   <script>
-    // Toggle languages
-    const btn = document.getElementById('lang-toggle');
-    let lang = 'sk';
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.lang-sk').forEach(e => e.style.display = lang === 'sk' ? 'none' : '');
-      document.querySelectorAll('.lang-en').forEach(e => e.style.display = lang === 'sk' ? '' : 'none');
-      lang = lang === 'sk' ? 'en' : 'sk';
-      btn.textContent = lang === 'sk' ? 'EN' : 'SK';
-      document.documentElement.lang = lang;
-    });
-    // Year
+    // Multilanguage toggle
+    const toggleBtn = document.getElementById('lang-toggle');
+    let current = 'sk';
+
+    const q = sel => document.querySelectorAll(sel);
+
+    function switchLang(to) {
+      // show or hide elements explicitly using inline styles
+      q('.lang-sk').forEach(e => e.style.display = (to === 'sk') ? '' : 'none');
+      q('.lang-en').forEach(e => e.style.display = (to === 'en') ? '' : 'none');
+      document.documentElement.lang = to;
+      toggleBtn.textContent = (to === 'sk') ? 'EN' : 'SK';
+      current = to;
+    }
+
+    toggleBtn.addEventListener('click', () => switchLang(current === 'sk' ? 'en' : 'sk'));
+
+    // initial state – Slovak visible, English hidden
+    switchLang('sk');
+
+    // Dynamic year
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
