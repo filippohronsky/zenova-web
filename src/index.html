@@ -44,7 +44,15 @@
     section h2{font-size:1.75rem;font-weight:700;color:var(--primary);margin-bottom:1rem;text-align:center;}
     .grid{display:grid;gap:1rem;}
     .services-list{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));}
-    .services-list li{background:#fff;border-radius:8px;padding:1rem;border:1px solid #e0e7ef;box-shadow:0 2px 4px rgba(0,0,0,.04);}
+    .services-list li{
+      background:#fff;
+      border-radius:8px;
+      padding:1rem 1rem 1rem 1.5rem;  /*     <── pridaj odsadenie zľava  */
+      border:1px solid #e0e7ef;
+      box-shadow:0 2px 4px rgba(0,0,0,.04);
+
+      list-style:none;                /*     <── a vypni guľôčky        */
+    }
 
     /* Partners & Clients */
     .logo-row{display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;align-items:center;margin-top:1rem;}
