@@ -1,13 +1,30 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ZENOVA Labs, s.r.o.</title>
-  <base href="/" />
-  <!-- External CSS -->
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Reset */
+    *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+    body { font-family: Arial, sans-serif; line-height:1.6; color:#333; }
+    .container { max-width:1000px; margin:0 auto; padding:1rem; }
+    header{background:#333;color:#fff;padding:1rem 0;}
+    header .container{display:flex;justify-content:space-between;align-items:center;}
+    header h1{font-size:1.5rem;}
+    #lang-toggle{background:#fff;color:#333;border:none;padding:0.5rem;cursor:pointer;border-radius:4px;}
+    nav{background:#444;}
+    nav ul{display:flex;list-style:none;justify-content:center;padding:0.5rem 0;}
+    nav li{margin:0 0.75rem;}
+    nav a{color:#fff;text-decoration:none;font-weight:bold;}
+    main{padding:2rem 0;}
+    section{margin-bottom:2rem;}
+    section h2{margin-bottom:1rem;font-size:1.25rem;color:#222;}
+    ul{list-style:disc inside;}
+    footer{background:#333;color:#fff;text-align:center;padding:1rem 0;}
+    .lang-en{display:none;}
+    @media(max-width:600px){nav ul{flex-direction:column;}nav li{margin:0.5rem 0;}}
+  </style>
 </head>
 <body>
   <header>
@@ -19,7 +36,6 @@
       <button id="lang-toggle">EN</button>
     </div>
   </header>
-
   <nav>
     <ul class="container">
       <li><a href="#services"><span class="lang-sk">Služby</span><span class="lang-en">Services</span></a></li>
@@ -28,15 +44,10 @@
       <li><a href="#contact"><span class="lang-sk">Kontakt</span><span class="lang-en">Contact</span></a></li>
     </ul>
   </nav>
-
   <main class="container">
     <section id="services">
-      <h2>
-        <span class="lang-sk">Naše služby</span>
-        <span class="lang-en">Our Services</span>
-      </h2>
+      <h2><span class="lang-sk">Naše služby</span><span class="lang-en">Our Services</span></h2>
       <ul>
-        <!-- služby -->
         <li><span class="lang-sk">Migrácia z on-prem prostredia do Microsoft 365</span><span class="lang-en">Migration from on-premises to Microsoft 365</span></li>
         <li><span class="lang-sk">Vytváranie jednoduchých aplikácií</span><span class="lang-en">Building lightweight applications</span></li>
         <li><span class="lang-sk">Automatizácia procesov</span><span class="lang-en">Process automation</span></li>
@@ -48,21 +59,18 @@
         <li><span class="lang-sk">Riešenia založené na Cisco Meraki ekosystéme</span><span class="lang-en">Solutions built on Cisco Meraki ecosystem</span></li>
       </ul>
     </section>
-
     <section id="partners">
       <h2><span class="lang-sk">Partneri</span><span class="lang-en">Partners</span></h2>
       <ul>
-        <li>Microsoft Partner</li>
+        <li><span class="lang-sk">Microsoft Partner</span><span class="lang-en">Microsoft Partner</span></li>
       </ul>
     </section>
-
     <section id="clients">
       <h2><span class="lang-sk">Zákazníci</span><span class="lang-en">Clients</span></h2>
       <ul>
-        <li>WOODCOTE Group a.s.</li>
+        <li><span class="lang-sk">WOODCOTE Group a.s.</span><span class="lang-en">WOODCOTE Group a.s.</span></li>
       </ul>
     </section>
-
     <section id="contact">
       <h2><span class="lang-sk">Kontakt</span><span class="lang-en">Contact</span></h2>
       <p><strong><span class="lang-sk">Email:</span><span class="lang-en">Email:</span></strong> <a href="mailto:info@zenovalabs.sk">info@zenovalabs.sk</a></p>
@@ -70,14 +78,24 @@
       <p><strong><span class="lang-sk">Adresa:</span><span class="lang-en">Address:</span></strong> ZENOVA Labs, s.r.o., Bratislava, Slovakia</p>
     </section>
   </main>
-
   <footer>
     <div class="container">
       <p>&copy; <span id="year"></span> ZENOVA Labs, s.r.o. All rights reserved.</p>
     </div>
   </footer>
-
-  <!-- External JS -->
-  <script src="script.js"></script>
+  <script>
+    // Toggle languages
+    const btn = document.getElementById('lang-toggle');
+    let lang = 'sk';
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.lang-sk').forEach(e => e.style.display = lang === 'sk' ? 'none' : '');
+      document.querySelectorAll('.lang-en').forEach(e => e.style.display = lang === 'sk' ? '' : 'none');
+      lang = lang === 'sk' ? 'en' : 'sk';
+      btn.textContent = lang === 'sk' ? 'EN' : 'SK';
+      document.documentElement.lang = lang;
+    });
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
