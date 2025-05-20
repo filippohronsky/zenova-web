@@ -58,7 +58,6 @@
     footer{background:var(--dark);color:#d1d7de;text-align:center;padding:1rem 0;}
 
     /* Multilang */
-    .lang-en{display:none;}
 
     @media(max-width:600px){header h1{font-size:1.35rem;}#hero img.logo{width:200px;}section{padding:2rem 0;}}
   </style>
@@ -67,9 +66,9 @@
   <header>
     <div class="container">
       <h1>
-        <img src="assets/zenova-logo.svg" alt="ZENOVA Labs logo" />
+        <img src="assets/zenova-logo.jpg" alt="ZENOVA Labs logo" />
         <span class="lang-sk">ZENOVA Labs, s.r.o.</span>
-        <span class="lang-en">ZENOVA Labs, Ltd.</span>
+        <span class="lang-en">ZENOVA Labs, s.r.o.</span>
       </h1>
       <button id="lang-toggle">EN</button>
     </div>
@@ -144,7 +143,7 @@
     const q = sel => document.querySelectorAll(sel);
 
     function switchLang(to) {
-      // show or hide elements explicitly using inline styles
+      // show or hide elements by toggling inline display
       q('.lang-sk').forEach(e => e.style.display = (to === 'sk') ? '' : 'none');
       q('.lang-en').forEach(e => e.style.display = (to === 'en') ? '' : 'none');
       document.documentElement.lang = to;
