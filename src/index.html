@@ -8,6 +8,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-W93VQRBXYL"></script>
+  <script>
+    window.GA_ID = 'G-W93VQRBXYL';
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { ad_storage: 'denied', analytics_storage: 'denied' });
+    gtag('js', new Date());
+    gtag('config', window.GA_ID);
+  </script>
 </head>
 <body>
   <div class="backdrop" aria-hidden="true">
@@ -358,9 +368,9 @@
     </div>
   </footer>
 
-  <div class="cookie-banner hidden" id="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent">
-    <div class="cookie-text">
-      <strong class="cookie-title">
+  <div class="consent-banner" id="consent-banner" role="dialog" aria-live="polite" aria-label="Cookie consent">
+    <div class="consent-text">
+      <strong class="consent-title">
         <span class="lang-sk">Cookies</span>
         <span class="lang-en">Cookies</span>
       </strong>
@@ -369,12 +379,12 @@
         <span class="lang-en">We use cookies to improve the functionality of the site.</span>
       </p>
     </div>
-    <div class="cookie-actions">
-      <button class="btn secondary" id="cookie-decline" type="button">
+    <div class="consent-actions">
+      <button class="btn secondary" id="consent-decline" type="button">
         <span class="lang-sk">Odmietnuť</span>
         <span class="lang-en">Decline</span>
       </button>
-      <button class="btn primary" id="cookie-accept" type="button">
+      <button class="btn primary" id="consent-accept" type="button">
         <span class="lang-sk">Povoliť</span>
         <span class="lang-en">Accept</span>
       </button>

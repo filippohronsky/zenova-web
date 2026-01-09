@@ -280,18 +280,65 @@ window.addEventListener('resize', () => {
 
 updateHeaderState();
 
-const cookieBanner = document.getElementById('cookie-banner');
-const cookieAccept = document.getElementById('cookie-accept');
-const cookieDecline = document.getElementById('cookie-decline');
-const cookieKey = 'zenova_cookie_choice';
+const cookieBanner = document.getElementById('consent-banner');
+const cookieAccept = document.getElementById('consent-accept');
+const cookieDecline = document.getElementById('consent-decline');
+const cookieKey = 'zenova_consent_choice';
+
+const setChoiceCookie = (value) => {
+  try {
+    document.cookie = `${cookieKey}=${value};path=/;max-age=${60 * 60 * 24 * 365}`;
+  } catch (err) {
+    // ignore
+  }
+};
+
+const getChoiceCookie = () => {
+  try {
+    return document.cookie
+      .split(';')
+      .map((c) => c.trim())
+      .find((c) => c.startsWith(`${cookieKey}=`))
+      ?.split('=')[1];
+  } catch (err) {
+    return null;
+  }
+};
+
+const ensureGtag = () => {
+  if (typeof window.dataLayer === 'undefined') {
+    window.dataLayer = [];
+  }
+  if (typeof window.gtag !== 'function') {
+    window.gtag = function () {
+      window.dataLayer.push(arguments);
+    };
+  }
+};
+
+const updateConsent = (value) => {
+  ensureGtag();
+  const gaId = window.GA_ID || 'G-W93VQRBXYL';
+  if (value === 'accepted') {
+    window.gtag('consent', 'update', { ad_storage: 'denied', analytics_storage: 'granted' });
+    window.gtag('config', gaId);
+  } else if (value === 'declined') {
+    window.gtag('consent', 'update', { ad_storage: 'denied', analytics_storage: 'denied' });
+  }
+};
 
 const updateCookieBanner = () => {
   if (!cookieBanner) {
     return;
   }
+  cookieBanner.classList.remove('hidden');
   try {
-    const choice = window.localStorage.getItem(cookieKey);
-    cookieBanner.classList.toggle('hidden', Boolean(choice));
+    const choice = window.localStorage.getItem(cookieKey) || getChoiceCookie();
+    const hasChoice = Boolean(choice);
+    cookieBanner.classList.toggle('hidden', hasChoice);
+    if (choice) {
+      updateConsent(choice);
+    }
   } catch (err) {
     cookieBanner.classList.remove('hidden');
   }
@@ -306,7 +353,9 @@ const setCookieChoice = (value) => {
   } catch (err) {
     // Ignore storage errors.
   }
+  setChoiceCookie(value);
   cookieBanner.classList.add('hidden');
+  updateConsent(value);
 };
 
 if (cookieAccept) {

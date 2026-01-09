@@ -792,12 +792,12 @@ main,
   height: 18px;
 }
 
-.cookie-banner {
+.consent-banner {
   position: fixed;
   left: 1.5rem;
   right: 1.5rem;
   bottom: 1.5rem;
-  z-index: 30;
+  z-index: 200;
   background: rgba(255, 255, 255, 0.98);
   border: 1px solid rgba(15, 28, 38, 0.12);
   border-radius: 18px;
@@ -809,24 +809,22 @@ main,
   gap: 1.5rem;
   max-width: 980px;
   margin: 0 auto;
-}
-
-.cookie-banner.hidden {
+.consent-banner.hidden {
   display: none;
 }
 
-.cookie-text {
+.consent-text {
   display: grid;
   gap: 0.35rem;
   color: var(--ink-soft);
 }
 
-.cookie-title {
+.consent-title {
   font-size: 1rem;
   color: var(--ink);
 }
 
-.cookie-actions {
+.consent-actions {
   display: flex;
   gap: 0.6rem;
   flex-wrap: wrap;
@@ -979,7 +977,7 @@ html.js-ready .stagger > * {
     align-items: flex-start;
   }
 
-  .cookie-banner {
+  .consent-banner {
     left: 1rem;
     right: 1rem;
     bottom: 1rem;
@@ -988,11 +986,11 @@ html.js-ready .stagger > * {
     align-items: flex-start;
   }
 
-  .cookie-actions {
+  .consent-actions {
     width: 100%;
   }
 
-  .cookie-actions .btn {
+  .consent-actions .btn {
     flex: 1;
   }
 
