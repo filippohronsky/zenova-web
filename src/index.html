@@ -27,7 +27,15 @@
           <span class="brand-subtitle lang-en">Cloud / Networking / Automation</span>
         </div>
       </a>
-      <div class="nav-actions">
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle menu">
+        <span class="sr-only">Menu</span>
+        <span class="nav-toggle-lines" aria-hidden="true">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </span>
+      </button>
+      <div class="nav-actions" id="primary-nav">
         <nav class="site-nav">
           <a href="#services"><span class="lang-sk">Služby</span><span class="lang-en">Services</span></a>
           <a href="#expertise"><span class="lang-sk">Expertíza</span><span class="lang-en">Expertise</span></a>
@@ -252,14 +260,23 @@
         </div>
         <div class="contact-card card reveal">
           <h3><span class="lang-sk">Získať konzultáciu</span><span class="lang-en">Request a consultation</span></h3>
-          <p><span class="lang-sk">Zhrňte svoje potreby a my pripravíme návrh architektúry aj ďalších krokov.</span><span class="lang-en">Share your needs and we'll outline the architecture and next steps.</span></p>
+          <p><span class="lang-sk">Zhrňte svoje obavy a požiadavky. My pripravíme návrh zmien architektúry aj ďalších krokov.</span><span class="lang-en">Share your needs and we’ll outline the architecture changes and next steps.</span></p>
           <a class="btn primary" href="mailto:info@zenova.sk">
             <span class="lang-sk">Napísať email</span>
             <span class="lang-en">Send an email</span>
           </a>
           <div class="contact-note">
             <span class="lang-sk">Odpovieme čo najskôr.</span>
-            <span class="lang-en">We'll get back as soon as we can.</span>
+            <span class="lang-en">We’ll get back as soon as we can.</span>
+          </div>
+          <div class="meeting-embed">
+            <div class="meeting-label">
+              <span class="lang-sk">Alebo si dohodnite stretnutie</span>
+              <span class="lang-en">Otherwise arrange a meeting</span>
+            </div>
+            <div class="meeting-frame">
+              <iframe src="https://outlook.office.com/book/ZENOVALabsQuickMeetingScheduler@zenova.sk/" width="100%" height="100%" scrolling="yes" style="border:0" title="ZENOVA Labs meeting scheduler"></iframe>
+            </div>
           </div>
         </div>
       </div>
@@ -280,6 +297,29 @@
       </div>
     </div>
   </footer>
+
+  <div class="cookie-banner hidden" id="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent">
+    <div class="cookie-text">
+      <strong class="cookie-title">
+        <span class="lang-sk">Cookies</span>
+        <span class="lang-en">Cookies</span>
+      </strong>
+      <p>
+        <span class="lang-sk">Používame cookies na zlepšenie funkcionality stránky.</span>
+        <span class="lang-en">We use cookies to improve the functionality of the site.</span>
+      </p>
+    </div>
+    <div class="cookie-actions">
+      <button class="btn secondary" id="cookie-decline" type="button">
+        <span class="lang-sk">Odmietnuť</span>
+        <span class="lang-en">Decline</span>
+      </button>
+      <button class="btn primary" id="cookie-accept" type="button">
+        <span class="lang-sk">Povoliť</span>
+        <span class="lang-en">Accept</span>
+      </button>
+    </div>
+  </div>
 
   <script src="script.js" defer></script>
 </body>
