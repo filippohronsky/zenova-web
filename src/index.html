@@ -40,6 +40,7 @@
           <a href="#services"><span class="lang-sk">Služby</span><span class="lang-en">Services</span></a>
           <a href="#expertise"><span class="lang-sk">Expertíza</span><span class="lang-en">Expertise</span></a>
           <a href="#ecosystem"><span class="lang-sk">Ecosystém</span><span class="lang-en">Ecosystem</span></a>
+          <a href="#certificates"><span class="lang-sk">Certifikáty</span><span class="lang-en">Certificates</span></a>
           <a href="#contact"><span class="lang-sk">Kontakt</span><span class="lang-en">Contact</span></a>
         </nav>
         <div class="nav-cta">
@@ -227,6 +228,29 @@
       </div>
     </section>
 
+    <section id="certificates" class="section alt">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-label lang-sk">Certifikáty</p>
+          <p class="section-label lang-en">Certificates</p>
+          <h2>
+            <span class="lang-sk">Dôveryhodnosť podložená certifikátmi</span>
+            <span class="lang-en">Credibility backed by certifications</span>
+          </h2>
+          <p class="section-lead">
+            <span class="lang-sk">Kliknite na certifikát pre zobrazenie detailu.</span>
+            <span class="lang-en">Click a certificate to view full size.</span>
+          </p>
+        </div>
+        <div class="cert-grid" id="cert-grid">
+          <p class="cert-placeholder">
+            <span class="lang-sk">Načítava sa galéria certifikátov...</span>
+            <span class="lang-en">Loading certificate gallery...</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
     <section id="contact" class="section contact">
       <div class="container contact-grid">
         <div class="contact-copy stagger">
@@ -272,11 +296,12 @@
           <div class="meeting-embed">
             <div class="meeting-label">
               <span class="lang-sk">Alebo si dohodnite stretnutie</span>
-              <span class="lang-en">Otherwise arrange a meeting</span>
+              <span class="lang-en">Arrange a meeting</span>
             </div>
-            <div class="meeting-frame">
-              <iframe src="https://outlook.office.com/book/ZENOVALabsQuickMeetingScheduler@zenova.sk/" width="100%" height="100%" scrolling="yes" style="border:0" title="ZENOVA Labs meeting scheduler"></iframe>
-            </div>
+            <a class="btn secondary meeting-link" href="https://outlook.office.com/book/ZENOVALabsQuickMeetingScheduler@zenova.sk/" target="_blank" rel="noopener">
+              <span class="lang-sk">Alebo si dohodnite stretnutie</span>
+              <span class="lang-en">Arrange a meeting</span>
+            </a>
           </div>
         </div>
       </div>
@@ -319,6 +344,16 @@
         <span class="lang-en">Accept</span>
       </button>
     </div>
+  </div>
+
+  <div class="lightbox hidden" id="lightbox" role="dialog" aria-modal="true" aria-label="Certificate preview">
+    <button class="lightbox-btn lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+    <button class="lightbox-btn lightbox-prev" id="lightbox-prev" aria-label="Previous">&#10094;</button>
+    <figure class="lightbox-content">
+      <img id="lightbox-img" alt="Certificate preview" />
+      <figcaption id="lightbox-caption"></figcaption>
+    </figure>
+    <button class="lightbox-btn lightbox-next" id="lightbox-next" aria-label="Next">&#10095;</button>
   </div>
 
   <script src="script.js" defer></script>
