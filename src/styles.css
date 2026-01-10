@@ -809,6 +809,8 @@ main,
   gap: 1.5rem;
   max-width: 980px;
   margin: 0 auto;
+}
+
 .consent-banner.hidden {
   display: none;
 }
