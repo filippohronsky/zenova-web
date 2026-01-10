@@ -2,6 +2,21 @@ document.documentElement.classList.add('js-ready');
 
 const toggleBtn = document.getElementById('lang-toggle');
 let currentLang = document.documentElement.lang || 'sk';
+const getRequestedLang = () => {
+  // check query first
+  const queryLang = new URLSearchParams(window.location.search).get('lang');
+  if (queryLang) return queryLang;
+  // then hash fragment (supports #...&lang=sk or #...?lang=sk)
+  const hash = window.location.hash || '';
+  if (hash.includes('lang=')) {
+    const cleanHash = hash.replace(/^#/, '').replace(/^!/, '').replace(/^\?/, '');
+    const hashParams = new URLSearchParams(cleanHash);
+    const hLang = hashParams.get('lang');
+    if (hLang) return hLang;
+  }
+  return null;
+};
+const queryLang = getRequestedLang();
 
 const applyStagger = () => {
   document.querySelectorAll('.stagger').forEach((group) => {
@@ -18,7 +33,9 @@ const applyStagger = () => {
 };
 
 const hostname = window.location.hostname.toLowerCase();
-if (
+if (queryLang === 'en' || queryLang === 'sk') {
+  currentLang = queryLang;
+} else if (
   hostname === 'zenovalabs.cloud' ||
   hostname.endsWith('.zenovalabs.cloud') ||
   hostname === 'zenovalabs.eu' ||
