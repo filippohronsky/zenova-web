@@ -80,18 +80,6 @@ jobs:
             echo "can_bootstrap=false" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Evaluate content deploy prerequisites
-        id: content_gate
-        if: steps.release_ref.outputs.can_release == 'true'
-        env:
-          SWA_API_TOKEN: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-        run: |
-          if [ -n "$SWA_API_TOKEN" ]; then
-            echo "can_publish=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "can_publish=false" >> "$GITHUB_OUTPUT"
-          fi
-
       - name: Explain skipped non-main deploy
         if: steps.release_ref.outputs.can_release != 'true'
         run: echo "Test deployment skipped because only the main branch is allowed to deploy."
@@ -168,29 +156,36 @@ jobs:
           echo "Enterprise edge status: ${{ steps.infra_deploy.outputs.enterprise_edge_status }}"
           echo "Phase 2 ready: ${{ steps.infra_deploy.outputs.phase_two_ready }}"
 
-      - name: Explain pending phase 2 bootstrap
-        if: steps.release_ref.outputs.can_release == 'true' && steps.infra_gate.outputs.can_bootstrap == 'true' && steps.content_gate.outputs.can_publish != 'true'
+      - name: Resolve test deployment token
+        if: steps.release_ref.outputs.can_release == 'true' && steps.infra_gate.outputs.can_bootstrap == 'true'
+        id: deploy_token
         run: |
-          echo "Phase 1 completed: RG + SWA + enterprise edge-ready foundation now exist."
-          echo "Phase 2 is still pending because AZURE_STATIC_WEB_APPS_API_TOKEN is not configured."
-          echo "1. In Azure Portal open Static Web App '${{ steps.infra_deploy.outputs.static_site_name }}'."
-          echo "2. Copy the deployment token from Manage deployment token, or run:"
-          echo "   az staticwebapp secrets list --name '${{ steps.infra_deploy.outputs.static_site_name }}' --query properties.apiKey -o tsv"
-          echo "3. Save it as the GitHub Environment secret 'AZURE_STATIC_WEB_APPS_API_TOKEN' in environment 'test'."
-          echo "4. Rerun this workflow to execute phase 2 and publish dist/ to https://${{ steps.infra_deploy.outputs.static_site_hostname }}"
+          SWA_API_TOKEN="$(az staticwebapp secrets list \
+            --name "${{ steps.infra_deploy.outputs.static_site_name }}" \
+            --resource-group "zenova-web-test-rg" \
+            --query properties.apiKey \
+            --output tsv)"
+
+          if [ -z "$SWA_API_TOKEN" ]; then
+            echo "Failed to resolve Azure Static Web Apps deployment token for test."
+            exit 1
+          fi
+
+          echo "::add-mask::$SWA_API_TOKEN"
+          echo "api_token=$SWA_API_TOKEN" >> "$GITHUB_OUTPUT"
 
       - name: Deploy test website
-        if: steps.release_ref.outputs.can_release == 'true' && steps.infra_gate.outputs.can_bootstrap == 'true' && steps.content_gate.outputs.can_publish == 'true'
+        if: steps.release_ref.outputs.can_release == 'true' && steps.infra_gate.outputs.can_bootstrap == 'true'
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          azure_static_web_apps_api_token: ${{ steps.deploy_token.outputs.api_token }}
           action: upload
           app_location: dist
           output_location: .
           skip_app_build: true
 
       - name: Confirm phase 2 deploy
-        if: steps.release_ref.outputs.can_release == 'true' && steps.infra_gate.outputs.can_bootstrap == 'true' && steps.content_gate.outputs.can_publish == 'true'
+        if: steps.release_ref.outputs.can_release == 'true' && steps.infra_gate.outputs.can_bootstrap == 'true'
         run: |
           echo "Phase 2 completed: content uploaded to https://${{ steps.infra_deploy.outputs.static_site_hostname }}"
-          echo "PR previews can now use the same AZURE_STATIC_WEB_APPS_API_TOKEN."
+          echo "The deployment token was resolved from the current Azure Static Web App."
