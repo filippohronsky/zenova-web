@@ -8,9 +8,11 @@ param staticSiteName = 'swa-zenova-web-test'
 param repositoryUrl = 'https://github.com/zenovalabs/zenova-web'
 param repositoryBranch = 'main'
 param enableStagingEnvironments = true
-param enableEnterpriseGradeEdge = true
+param enableEnterpriseGradeEdge = false
 param enableDnsPlaceholders = false
 param dnsZoneNames = []
 param extraTags = {
   stage: 'test'
+  enterprise: 'zenova'
+  project: 'zenova-web'
 }

@@ -14,4 +14,5 @@ param dnsZoneNames = []
 param extraTags = {
   stage: 'prod'
   enterprise: 'zenova'
+  project: 'zenova-web'
 }

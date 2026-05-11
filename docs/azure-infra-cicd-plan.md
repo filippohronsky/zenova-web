@@ -322,7 +322,7 @@ Odporucany smer:
 Frontend domains pri buducej edge variante:
 
 - `zenova.sk`
-- `www.zenova.sk`
+- `zenova.sk`
 - `zenovalabs.eu`
 - `www.zenovalabs.eu` volitelne
 - `zenovalabs.cloud`

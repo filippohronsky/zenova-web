@@ -4,7 +4,7 @@ import path from "node:path";
 const repoRoot = process.cwd();
 const srcDir = path.join(repoRoot, "src");
 const distDir = path.join(repoRoot, "dist");
-const siteHost = "https://www.zenova.sk";
+const siteHost = "https://zenova.sk";
 const localizedRoutePairs = new Map([
   ["/", "/en/"],
   ["/sluzby/", "/en/services/"],
@@ -306,14 +306,14 @@ async function validateHtmlMetadata() {
     expectMatch(contents, /<html\s+lang="[^"]+"/i, `${relative}: missing <html lang="...">`);
     expectMatch(contents, /<title>[^<]+<\/title>/i, `${relative}: missing <title>`);
     expectMatch(contents, /<meta\s+name="description"\s+content="[^"]+"/i, `${relative}: missing meta description`);
-    expectMatch(contents, /<link\s+rel="canonical"\s+href="https:\/\/www\.zenova\.sk\/[^"]*"\s*\/?>/i, `${relative}: missing canonical link`);
-    expectMatch(contents, /<link\s+rel="alternate"\s+hreflang="sk"\s+href="https:\/\/www\.zenova\.sk\/[^"]*"\s*\/?>/i, `${relative}: missing hreflang=sk link`);
-    expectMatch(contents, /<link\s+rel="alternate"\s+hreflang="en"\s+href="https:\/\/www\.zenova\.sk\/[^"]*"\s*\/?>/i, `${relative}: missing hreflang=en link`);
-    expectMatch(contents, /<link\s+rel="alternate"\s+hreflang="x-default"\s+href="https:\/\/www\.zenova\.sk\/"\s*\/?>/i, `${relative}: missing hreflang=x-default link`);
+    expectMatch(contents, /<link\s+rel="canonical"\s+href="https:\/\/zenova\.sk\/[^"]*"\s*\/?>/i, `${relative}: missing canonical link`);
+    expectMatch(contents, /<link\s+rel="alternate"\s+hreflang="sk"\s+href="https:\/\/zenova\.sk\/[^"]*"\s*\/?>/i, `${relative}: missing hreflang=sk link`);
+    expectMatch(contents, /<link\s+rel="alternate"\s+hreflang="en"\s+href="https:\/\/zenova\.sk\/[^"]*"\s*\/?>/i, `${relative}: missing hreflang=en link`);
+    expectMatch(contents, /<link\s+rel="alternate"\s+hreflang="x-default"\s+href="https:\/\/zenova\.sk\/"\s*\/?>/i, `${relative}: missing hreflang=x-default link`);
     expectMatch(contents, /<meta\s+name="twitter:card"\s+content="summary_large_image"\s*\/?>/i, `${relative}: missing twitter:card meta`);
     expectMatch(contents, /<meta\s+name="twitter:title"\s+content="[^"]+"\s*\/?>/i, `${relative}: missing twitter:title meta`);
     expectMatch(contents, /<meta\s+name="twitter:description"\s+content="[^"]+"\s*\/?>/i, `${relative}: missing twitter:description meta`);
-    expectMatch(contents, /<meta\s+name="twitter:image"\s+content="https:\/\/www\.zenova\.sk\/assets\/zenova\.png"\s*\/?>/i, `${relative}: missing twitter:image meta`);
+    expectMatch(contents, /<meta\s+name="twitter:image"\s+content="https:\/\/zenova\.sk\/assets\/zenova\.png"\s*\/?>/i, `${relative}: missing twitter:image meta`);
     expectMatch(contents, /<link\s+rel="stylesheet"\s+href="\/styles\.css(?:\?v=[^"]+)?"\s*\/?>/i, `${relative}: missing shared stylesheet link`);
     expectMatch(contents, /<script\s+src="\/script\.js(?:\?v=[^"]+)?"\s+defer><\/script>/i, `${relative}: missing shared script include`);
 
@@ -381,8 +381,8 @@ async function validateRobotsAndSitemap(htmlFiles) {
   const robots = await readFile(robotsPath, "utf8");
   const sitemap = await readFile(sitemapPath, "utf8");
 
-  if (!robots.includes("Sitemap: https://www.zenova.sk/sitemap.xml")) {
-    errors.push("src/robots.txt: missing sitemap declaration for https://www.zenova.sk/sitemap.xml");
+  if (!robots.includes("Sitemap: https://zenova.sk/sitemap.xml")) {
+    errors.push("src/robots.txt: missing sitemap declaration for https://zenova.sk/sitemap.xml");
   }
 
   const sitemapLocs = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);

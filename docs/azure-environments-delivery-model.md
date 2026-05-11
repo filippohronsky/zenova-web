@@ -198,7 +198,7 @@ Production domain onboarding after phase 1:
 - attach `zenova.sk` and any `zenovalabs.*` domains to the production SWA
 - set `zenova.sk` as the default custom domain
 - let SWA redirect the remaining attached domains to `zenova.sk`
-- verify that canonical tags, sitemap URLs, and `hreflang` remain aligned with `https://www.zenova.sk/`
+- verify that canonical tags, sitemap URLs, and `hreflang` remain aligned with `https://zenova.sk/`
 
 Manual onboarding outside Bicep and GitHub Actions:
 
